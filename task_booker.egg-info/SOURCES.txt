@@ -1,4 +1,3 @@
-LICENSE
 README.md
 setup.py
 task_booker.egg-info/PKG-INFO

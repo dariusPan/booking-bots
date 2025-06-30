@@ -6,17 +6,6 @@ This bot is designed for flexibility and can run manually or on a schedule. It i
 
 ---
 
-## 🚀 Features
-
-- Headless Selenium browser support
-- Secure credential management with `.env`
-- Modular and readable code
-- Task scheduling with Python (`schedule` module)
-- Easy to set up and extend
-- Cross-platform (Windows, macOS, Linux)
-
----
-
 ## 🛠️ Requirements
 
 - Python 3.8+
@@ -35,8 +24,11 @@ All sensitive data like usernames, passwords, and URLs are managed through a `.e
 - USERNAME="myusername@xx.com"
 - PASSWORD="mypassword"
 - BDATE = '2025-05-19'
-- TSTART = '830pm'
-- TEND = '930pm'
+- TSTART = '830pm' # Booking time start
+- TEND = '930pm'   # Booking time end
+
+- SCHEDULE_DATE = "2025-06-30"  # Format: YYYY-MM-DD
+- SCHEDULE_TIME = "14:31"  # Format: HH:MM (24-hour)
 
 ⚠️ Never commit `.env` to version control. Add `.env` to `.gitignore`.
 
@@ -72,6 +64,8 @@ cp .env.example .env
 
 ```bash
 pip install .
+# adjust booking time and credentials in .env file
+python run.py
 
 ```
 
@@ -82,7 +76,7 @@ pip install .
 Let me know if you'd like:
 - A sample `.env.example` file
 - A `Dockerfile` for containerized deployment
-- Sample Selenium logic in `bot.py`
+- Sample Selenium logic in `Qreserve.py`
 - GitHub Actions CI workflow for testing
 
 I can generate or scaffold any of those to help you ship a polished open-source project.
