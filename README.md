@@ -2,7 +2,7 @@
 
 **Booking Bot** is an automation tool built with **Python** and **Selenium** to automate booking tasks on a target website. It simulates human interaction to fill out forms, click buttons, and complete reservation processes automatically.
 
-This bot is designed for flexibility and can run manually or on a schedule. It is cross-platform and can be configured easily using a `.env` file for environment-specific settings such as login credentials and booking preferences.
+This bot is designed for flexibility and can run manually or on a schedule (can run daily). It is cross-platform and can be configured easily using a `.env` file for environment-specific settings such as login credentials and booking preferences.
 
 ---
 
@@ -29,8 +29,6 @@ All sensitive data like usernames, passwords, and URLs are managed through a `.e
 
 - SCHEDULE_DATE = "2025-06-30"  # Format: YYYY-MM-DD
 - SCHEDULE_TIME = "14:31"  # Format: HH:MM (24-hour)
-
-⚠️ Never commit `.env` to version control. Add `.env` to `.gitignore`.
 
 ---
 
