@@ -1,0 +1,67 @@
+# 🧾 Booking Bot
+
+**Booking Bot** is an automation tool built with **Python** and **Selenium** to automate booking tasks on a target website. It simulates human interaction to fill out forms, click buttons, and complete reservation processes automatically.
+
+This bot is designed for flexibility and can run manually or on a schedule. It is cross-platform and can be configured easily using a `.env` file for environment-specific settings such as login credentials and booking preferences.
+
+---
+
+## 🚀 Features
+
+- Headless Selenium browser support
+- Secure credential management with `.env`
+- Modular and readable code
+- Task scheduling with Python (`schedule` module)
+- Easy to set up and extend
+- Cross-platform (Windows, macOS, Linux)
+
+---
+
+## 🛠️ Requirements
+
+- Python 3.8+
+- Google Chrome
+- ChromeDriver (matching your Chrome version)
+- Virtual environment recommended
+
+---
+
+## 🔐 Using the `.env` File
+
+All sensitive data like usernames, passwords, and URLs are managed through a `.env` file.
+
+### Example `.env`
+
+USERNAME="myusername@xx.com"
+PASSWORD="mypassword"
+BDATE = '2025-05-19'
+TSTART = '830pm'
+TEND = '930pm'
+
+⚠️ Never commit `.env` to version control. Add `.env` to `.gitignore`.
+
+---
+
+## 💻 Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/booking-bot.git
+cd booking-bot
+```
+---
+
+## 🔧 What’s Next?
+
+Let me know if you'd like:
+- A sample `.env.example` file
+- A `Dockerfile` for containerized deployment
+- Sample Selenium logic in `bot.py`
+- GitHub Actions CI workflow for testing
+
+I can generate or scaffold any of those to help you ship a polished open-source project.
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
