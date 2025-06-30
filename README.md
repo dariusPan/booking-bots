@@ -32,11 +32,11 @@ All sensitive data like usernames, passwords, and URLs are managed through a `.e
 
 ### Example `.env`
 
-USERNAME="myusername@xx.com"
-PASSWORD="mypassword"
-BDATE = '2025-05-19'
-TSTART = '830pm'
-TEND = '930pm'
+- USERNAME="myusername@xx.com"
+- PASSWORD="mypassword"
+- BDATE = '2025-05-19'
+- TSTART = '830pm'
+- TEND = '930pm'
 
 ⚠️ Never commit `.env` to version control. Add `.env` to `.gitignore`.
 
@@ -50,6 +50,31 @@ TEND = '930pm'
 git clone https://github.com/yourusername/booking-bot.git
 cd booking-bot
 ```
+
+### 2. Install virtual environment and dependencies
+
+```bash
+python -m venv venv
+# Activate the environment:
+# On macOS/Linux:
+source venv/bin/activate
+# On Windows:
+venv\Scripts\activate
+
+# install dependencies
+pip install -r requirements.txt
+
+# copy or create your .env file
+cp .env.example .env
+```
+
+### 3. Setup and run program
+
+```bash
+pip install .
+
+```
+
 ---
 
 ## 🔧 What’s Next?
