@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 import os
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
@@ -19,8 +21,29 @@ TSTART = os.getenv("TSTART")
 TEND = os.getenv("TEND")
 
 DELAY_WEB = 3
-DELAY_CLICK = 0.5
 DELAY_LOAD = 10
+
+def keep_sending(driver, duration, xpath_value, keys):
+    try:
+        # Wait up to 10 seconds, checking every 500 ms by default
+        element = WebDriverWait(driver, duration).until(
+            # lambda driver: driver.find_element(by=By.XPATH, value=xpath_value)
+            EC.presence_of_element_located((By.XPATH, xpath_value))
+        )
+        element.send_keys(keys)
+    except:
+        print("Element not found within the timeout.")
+
+def keep_clicking(driver, duration, xpath_value):
+    try:
+        # Wait up to 10 seconds, checking every 500 ms by default
+        element = WebDriverWait(driver, duration).until(
+            # lambda driver: driver.find_element(by=By.XPATH, value=xpath_value)
+            EC.presence_of_element_located((By.XPATH, xpath_value))
+        )
+        element.click()
+    except:
+        print("Element not found within the timeout.")
 
 def run_bot():
     print("[Bot] Starting the booking bot...")
@@ -47,72 +70,72 @@ def run_bot():
         time.sleep(DELAY_WEB)
         
         # enter credential
-        user = driver.find_element(by=By.XPATH, value='//*[@id="email-address"]')
-        user.send_keys(USERNAME)
-        password = driver.find_element(by=By.XPATH, value='//*[@id="password"]')
-        password.send_keys(PASSWORD)
-        button = driver.find_element(by=By.XPATH, value='//*[@id="sign-in"]')
-        button.click()
-        time.sleep(DELAY_LOAD)
-
+        keep_sending(driver, DELAY_LOAD, '//*[@id="email-address"]', USERNAME)
+        keep_sending(driver, DELAY_LOAD, '//*[@id="password"]', PASSWORD)
+        keep_clicking(driver, DELAY_LOAD, '//*[@id="sign-in"]')
+        # time.sleep(DELAY_LOAD)
+        
         # book facility
-        button = driver.find_element(by=By.XPATH, value='/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div/div/div[1]/section[1]/div/div/div[2]/ul/li[8]/button')
-
-        button.click()
-        time.sleep(DELAY_LOAD)
-
-        # choose badminton
-        button = driver.find_element(by=By.XPATH, value='//*[@id="create-new-reservation"]')
-        button.click()
-        time.sleep(DELAY_LOAD)
-
+        keep_clicking(driver, DELAY_LOAD, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div/div/div[1]/section[1]/div/div/div[2]/ul/li[8]/button')
+        # time.sleep(DELAY_LOAD)
+        
+        keep_clicking(driver, DELAY_LOAD, '//*[@id="create-new-reservation"]')
+        # time.sleep(DELAY_LOAD)
+        
         # choose venue
-        button = driver.find_element(by=By.XPATH, value='//*[@id="reserve-next"]')
-        button.click()
-        time.sleep(DELAY_LOAD)
-        button = driver.find_element(by=By.XPATH, value='/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div/div[2]/div[1]/div/div/div/div/div/div/input')
-        button.click()
-        button.send_keys(Keys.CONTROL + "a")
-        button.send_keys(BDATE)
-        button.send_keys(Keys.RETURN)
-        time.sleep(DELAY_CLICK)
-
+        keep_clicking(driver, DELAY_LOAD, '//*[@id="reserve-next"]')
+        # time.sleep(DELAY_LOAD)
+        print("checkpoint")
+        try:
+            # Wait up to 10 seconds, checking every 500 ms by default
+            element = WebDriverWait(driver, DELAY_LOAD).until(
+                # lambda d: d.find_element(By.XPATH, value='/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div/div[2]/div[1]/div/div/div/div/div/div/input')
+                EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div/div[2]/div[1]/div/div/div/div/div/div/input'))
+            )
+            element.click()
+            element.send_keys(Keys.CONTROL + "a")
+            element.send_keys(BDATE)
+            element.send_keys(Keys.RETURN)
+        except:
+            print("Element not found within the timeout.")
+            
+        print("checkpoint 2")
+        
         # pick the date
-        button_start = driver.find_element(by=By.XPATH, value='/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div/div[3]/div/div/div/div/div/input')
-        button_start.click()
-        button_start.send_keys(Keys.CONTROL + "a")
-        button_start.send_keys(TSTART)
-        button_start.send_keys(Keys.RETURN)
-        time.sleep(DELAY_CLICK)
-
-        button_end = driver.find_element(by=By.XPATH, value='/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[4]/div[1]/div[1]/div[2]/div/div[4]/div/div/div/div/div/input')
-        button_end.click()
-        button_end.send_keys(Keys.CONTROL + "a")
-        button_end.send_keys(TEND)
-        button_end.send_keys(Keys.RETURN)
-        time.sleep(DELAY_LOAD)
+        try:
+            # Wait up to 10 seconds, checking every 500 ms by default
+            element = WebDriverWait(driver, DELAY_LOAD).until(
+                # lambda d: d.find_element(By.XPATH, value='/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div/div[3]/div/div/div/div/div/input')
+                EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div/div[3]/div/div/div/div/div/input'))
+            )
+            element.click()
+            element.send_keys(Keys.CONTROL + "a")
+            element.send_keys(TSTART)
+            element.send_keys(Keys.RETURN)
+        except:
+            print("Element not found within the timeout.")
+        
+        try:
+            # Wait up to 10 seconds, checking every 500 ms by default
+            element = WebDriverWait(driver, DELAY_LOAD).until(
+                # lambda d: d.find_element(By.XPATH, value='/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[4]/div[1]/div[1]/div[2]/div/div[4]/div/div/div/div/div/input')
+                EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[4]/div[1]/div[1]/div[2]/div/div[4]/div/div/div/div/div/input'))
+            )
+            element.click()
+            element.send_keys(Keys.CONTROL + "a")
+            element.send_keys(TEND)
+            element.send_keys(Keys.RETURN)
+        except:
+            print("Element not found within the timeout.")
 
         # Reserve
-        button = driver.find_element(by=By.XPATH, value='//*[@id="reserve-next"]')
-        button.click()
-        time.sleep(DELAY_LOAD)
-        button = driver.find_element(by=By.XPATH, value='/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/div/div[1]/div/fieldset/div[1]/div/span/select')
-        button.click()
-        time.sleep(DELAY_CLICK)
-        button = driver.find_element(by=By.XPATH, value='/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/div/div[1]/div/fieldset/div[1]/div/span/select/option[3]')
-        button.click()
-        time.sleep(DELAY_LOAD)
-        button = driver.find_element(by=By.XPATH, value='/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/div/div[1]/div/fieldset/div[2]/div/span/select')
-        button.click()
-        time.sleep(DELAY_CLICK)
-        button = driver.find_element(by=By.XPATH, value='/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/div/div[1]/div/fieldset/div[2]/div/span/select/option[3]')
-        button.click()
-        time.sleep(DELAY_CLICK)
-        button = driver.find_element(by=By.XPATH, value='//*[@id="book-reserve"]')
-        button.click()
-        time.sleep(DELAY_LOAD)
+        keep_clicking(driver, DELAY_LOAD, '//*[@id="reserve-next"]')
+        keep_clicking(driver, DELAY_LOAD, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/div/div[1]/div/fieldset/div[1]/div/span/select')
+        keep_clicking(driver, DELAY_LOAD, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/div/div[1]/div/fieldset/div[1]/div/span/select/option[3]')
+        keep_clicking(driver, DELAY_LOAD, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/div/div[1]/div/fieldset/div[2]/div/span/select')
+        keep_clicking(driver, DELAY_LOAD, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/div/div[1]/div/fieldset/div[2]/div/span/select/option[3]')
+        keep_clicking(driver, DELAY_LOAD, '//*[@id="book-reserve"]')
         driver.close()
-        print("booking successful")
     
     except (NoSuchElementException, TimeoutException) as e:
         print(f"[Error] Element not found or timed out: {e}")
