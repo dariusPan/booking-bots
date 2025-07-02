@@ -1,3 +1,2 @@
 selenium
-schedule
 python-dotenv

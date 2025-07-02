@@ -1,14 +1,13 @@
 Metadata-Version: 2.4
-Name: task-booker
-Version: 0.1.0
+Name: booking-bots
+Version: 0.1.1
 Summary: A Selenium-based bot for automating booking tasks
-Author: Your Name
-Author-email: your.email@example.com
+Author: PandaRius
+Author-email: pjm.darius@g
 Classifier: Programming Language :: Python :: 3
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.8
 Requires-Dist: selenium
-Requires-Dist: schedule
 Requires-Dist: python-dotenv
 Dynamic: author
 Dynamic: author-email

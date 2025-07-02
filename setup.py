@@ -1,16 +1,15 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='task-booker',
-    version='0.1.0',
+    name='booking-bots',
+    version='0.1.1',
     description='A Selenium-based bot for automating booking tasks',
-    author='Your Name',
-    author_email='your.email@example.com',
+    author='PandaRius',
+    author_email='pjm.darius@g',
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
         'selenium',
-        'schedule',
         'python-dotenv'
     ],
     entry_points={
