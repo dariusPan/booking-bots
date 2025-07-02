@@ -66,6 +66,7 @@ pip install .
 python run.py
 python scheduler.py
 # for testing
+python run.py test
 python scheduler.py test
 
 ```
