@@ -64,6 +64,9 @@ cp .env.example .env
 pip install .
 # adjust booking time and credentials in .env file
 python run.py
+python scheduler.py
+# for testing
+python scheduler.py test
 
 ```
 
