@@ -144,6 +144,9 @@ def run_bot(TESTFLAG):
         keep_clicking(driver, DELAY_LOAD, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/div/div[1]/div/fieldset/div[2]/div/span/select/option[3]')
         keep_clicking(driver, DELAY_LOAD, '//*[@id="reservation-book-stage-buttons"]/button[1]')
 
+        # Wait till the date and time is available
+        time.sleep(28)
+
         try:
             # Wait up to 10 seconds, checking every 500 ms by default
             element = WebDriverWait(driver, timeout=DELAY_LOAD, poll_frequency=.5).until(

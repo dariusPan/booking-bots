@@ -5,7 +5,6 @@ from task_bots.Qreserve import run_bot
 from datetime import datetime
 import sys
 
-TESTFLAG = False
 # Load environment variables from .env
 load_dotenv()
 
@@ -17,17 +16,10 @@ def schedule_jobs():
     now = datetime.now()
     print(f"[Scheduler] Current time: {now.strftime('%Y-%m-%d %H:%M:%S')}")
 
-    if sys.argv[1] == 'test':
-        now = datetime.now()
-        print(f"[Scheduler] Testing time: {now.strftime('%Y-%m-%d %H:%M:%S')}")
-        run_bot(True)
-        print("[Scheduler] Test finished. Exiting scheduler.")
-        return
-    else:
+    if len(sys.argv) <= 1:
         if not SCHEDULE_DATE or not SCHEDULE_TIME:
             print("[Scheduler] ERROR: BOOKING_DATE or BOOKING_TIME not set in .env.")
             return
-        
         try:
             scheduled_dt = datetime.strptime(f"{SCHEDULE_DATE} {SCHEDULE_TIME}", "%Y-%m-%d %H:%M")
             print(f"[Scheduler] Bot will run at: {scheduled_dt.strftime('%Y-%m-%d %H:%M:%S')}")
@@ -46,6 +38,13 @@ def schedule_jobs():
                 time.sleep(5)  # Check every 60 seconds
             except KeyboardInterrupt:
                 print("\n[Scheduler] Scheduler stopped manually.")
+    elif sys.argv[1] == 'test':
+        now = datetime.now()
+        print(f"[Scheduler] Testing time: {now.strftime('%Y-%m-%d %H:%M:%S')}")
+        run_bot(True)
+        print("[Scheduler] Test finished. Exiting scheduler.")
+        return
+       
 
 if __name__ == "__main__":
     schedule_jobs()
