@@ -1,2 +1,0 @@
-[console_scripts]
-booking-bot = booking_bot.bot:run_bot
