@@ -28,7 +28,7 @@ All sensitive data like usernames, passwords, and URLs are managed through a `.e
 - TEND = '930pm'   # Booking time end
 
 - SCHEDULE_DATE = "2025-06-30"  # Format: YYYY-MM-DD
-- SCHEDULE_TIME = "14:31"  # Format: HH:MM (24-hour)
+- SCHEDULE_TIME = "14:31"  # Format: HH:MM (24-hour) Give a 32 second head start for maximum performance
 
 ---
 

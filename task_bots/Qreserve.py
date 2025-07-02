@@ -135,7 +135,7 @@ def run_bot(TESTFLAG):
         print("Head to last page first")
 
         # Reserve wait 5 secs to deconflict
-        time.sleep(5)
+        time.sleep(10)
         keep_clicking(driver, DELAY_LOAD, '//*[@id="reserve-next"]')
         time.sleep(0.5)
         keep_clicking(driver, DELAY_LOAD, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/div/div[1]/div/fieldset/div[1]/div/span/select')

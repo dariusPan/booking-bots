@@ -8,8 +8,13 @@ __pycache__/
 # Ignore environment variables
 .env
 
-# macOS system files
-.DS_Store
+# Packaging
+build/
+dist/
+*.egg-info/
 
-# VSCode config files (optional)
+# Editor/OS
+.DS_Store
+*.swp
+.idea/
 .vscode/
