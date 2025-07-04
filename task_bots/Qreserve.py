@@ -19,6 +19,7 @@ HEADLESS = os.getenv("HEADLESS", "true").lower() == "true"
 BDATE = os.getenv("BDATE")
 TSTART = os.getenv("TSTART")
 TEND = os.getenv("TEND")
+EQP = os.getenv("EQP")
 
 if USERNAME is None:
     print("Environment variable is not available")
@@ -81,7 +82,12 @@ def run_bot(TESTFLAG):
     
         # book facility
         # '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div[1]/div/div/div[1]/section[1]/div/div/div[2]/ul/li[8]/button'
-        keep_clicking(driver, DELAY_LOAD, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div[1]/div/div/div[1]/section[1]/div/div/div[2]/ul/li[8]/button')
+        if EQP == 'LW':
+            keep_clicking(driver, DELAY_LOAD, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div[1]/div/div/div[1]/section[1]/div/div/div[2]/ul/li[19]/button')
+        elif EQP == 'ALD':
+            keep_clicking(driver, DELAY_LOAD, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div[1]/div/div/div[1]/section[1]/div/div/div[2]/ul/li[4]/button')
+        else:
+            keep_clicking(driver, DELAY_LOAD, '/html/body/div[2]/div/div/div[2]/div[2]/div[2]/div[1]/div/div/div[1]/section[1]/div/div/div[2]/ul/li[8]/button')
         # time.sleep(10)
         
         # reserving

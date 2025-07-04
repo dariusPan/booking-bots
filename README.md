@@ -28,7 +28,7 @@ All sensitive data like usernames, passwords, and URLs are managed through a `.e
 - TEND = '930pm'   # Booking time end
 - SCHEDULE_DATE = "2025-06-30"  # Format: YYYY-MM-DD
 - SCHEDULE_TIME = "14:29"  # Format: HH:MM (24-hour) Set 1 minute before when you want to run the bot
-
+- EQP = 'LW' # LW-microwriter, EBL-raith, ALD-thermal by default EBL, wrong entry will book EBL
 ---
 
 ## 💻 Setup Instructions
